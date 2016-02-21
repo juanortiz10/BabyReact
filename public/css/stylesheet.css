@@ -1,0 +1,27 @@
+html,body{
+  background-color:
+}
+
+button{
+  padding: 10px;
+}
+
+div#toolbar{
+  background-color: #46C2B7;
+  height: 60px;
+  width: auto;
+  -webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+}
+
+img#avatar{
+  width: 45px;
+  height: 40px;
+  display: block;
+  margin: 5px auto;
+}
+
+textarea{
+
+}
