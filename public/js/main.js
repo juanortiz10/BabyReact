@@ -19101,68 +19101,68 @@ var ReactDOM = require('react-dom');
 var List = require('./List.jsx');
 
 var ListManager = React.createClass({
-  displayName: 'ListManager',
+    displayName: 'ListManager',
 
-  getInitialState: function () {
-    return { items: [], newItemText: '' };
-  },
-  onChange: function (e) {
-    this.setState({
-      newItemText: e.target.value
-    });
-  },
-  clearClick: function (e) {
-    this.setState({
-      newItemText: ''
-    });
-  },
-  handleSubmit: function (e) {
-    e.preventDefault();
-    if (this.state.newItemText != "") {
-      var currentItems = this.state.items;
-      currentItems.push(this.state.newItemText);
-      this.setState({ items: currentItems, newItemText: '' });
-    } else {
-      alert("Please a valid comment");
-    }
-  },
-  render: function () {
-    var divStyle = {
-      marginTop: 50,
-      padding: 20
-    };
-    var buttonStyle = {
-      margin: 1
-    };
-    return React.createElement(
-      'div',
-      { className: 'col-sm-12', style: divStyle },
-      React.createElement(
-        'div',
-        { className: 'panel panel-primary' },
-        React.createElement(
-          'div',
-          { className: 'row panel-body' },
-          React.createElement(
-            'form',
-            { onSubmit: this.handleSubmit },
+    getInitialState: function () {
+        return { items: [], newItemText: '' };
+    },
+    onChange: function (e) {
+        this.setState({
+            newItemText: e.target.value
+        });
+    },
+    clearClick: function (e) {
+        this.setState({
+            newItemText: ''
+        });
+    },
+    handleSubmit: function (e) {
+        e.preventDefault();
+        if (this.state.newItemText != "") {
+            var currentItems = this.state.items;
+            currentItems.push(this.state.newItemText);
+            this.setState({ items: currentItems, newItemText: '' });
+        } else {
+            alert("Please a valid comment");
+        }
+    },
+    render: function () {
+        var buttonStyle = {
+            margin: 1
+        };
+        return React.createElement(
+            'div',
+            { className: 'row', id: 'comments_container' },
             React.createElement(
-              'div',
-              { className: 'col-sm-9' },
-              React.createElement('textarea', { rows: '4', className: 'form-control', onChange: this.onChange, value: this.state.newItemText })
+                'div',
+                { className: 'col-sm-12' },
+                React.createElement(List, { items: this.state.items })
             ),
             React.createElement(
-              'div',
-              { className: 'col-sm-2' },
-              React.createElement('input', { type: 'button', className: 'btn btn-default', value: 'Clear', style: buttonStyle, onClick: this.clearClick }),
-              React.createElement('input', { type: 'submit', className: 'btn btn-warning', value: 'Add', style: buttonStyle })
+                'div',
+                null,
+                React.createElement(
+                    'div',
+                    { className: 'row' },
+                    React.createElement(
+                        'form',
+                        { onSubmit: this.handleSubmit },
+                        React.createElement(
+                            'div',
+                            { className: 'col-sm-8' },
+                            React.createElement('textarea', { rows: '4', className: 'form-control', onChange: this.onChange, value: this.state.newItemText })
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'col-sm-2' },
+                            React.createElement('input', { type: 'button', className: 'btn btn-default', value: 'Clear', style: buttonStyle, onClick: this.clearClick }),
+                            React.createElement('input', { type: 'submit', className: 'btn btn-warning', value: 'Add', style: buttonStyle })
+                        )
+                    )
+                )
             )
-          )
-        ),
-        React.createElement(List, { items: this.state.items })
-      )
-    );
-  }
+        );
+    }
 });
 
 module.exports = ListManager;
@@ -19174,6 +19174,6 @@ var Box = require('./components/Box.jsx');
 var ListManager = require('./components/ListManager.jsx');
 
 ReactDOM.render(React.createElement(Box, null), document.getElementById('toolbar'));
-ReactDOM.render(React.createElement(ListManager, null), document.getElementById('body'));
+//  ReactDOM.render(<ListManager />, document.getElementById('body'));
 
 },{"./components/Box.jsx":159,"./components/ListManager.jsx":162,"react":158,"react-dom":2}]},{},[163]);

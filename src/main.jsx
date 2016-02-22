@@ -4,4 +4,4 @@ var Box = require('./components/Box.jsx');
 var ListManager = require('./components/ListManager.jsx');
 
 ReactDOM.render(<Box/>, document.getElementById('toolbar'));
-ReactDOM.render(<ListManager />, document.getElementById('body'));
+//  ReactDOM.render(<ListManager />, document.getElementById('body'));
