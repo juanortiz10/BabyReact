@@ -11,7 +11,6 @@ var GridCollage = React.createClass({
   },
   render: function(){
     var createImageBox = function(src,index){
-      console.log(index);
       return <GridItem imageRoute={src} key={index}/>;
     };
     return(

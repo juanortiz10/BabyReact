@@ -19044,7 +19044,6 @@ var GridCollage = React.createClass({
   },
   render: function () {
     var createImageBox = function (src, index) {
-      console.log(index);
       return React.createElement(GridItem, { imageRoute: src, key: index });
     };
     return React.createElement(
@@ -19059,24 +19058,22 @@ module.exports = GridCollage;
 
 },{"./GridItem.jsx":160,"react":158}],160:[function(require,module,exports){
 var React = require('react');
+var Modal = require('./Modal.jsx');
 
 var GridItem = React.createClass({
-  displayName: "GridItem",
+  displayName: 'GridItem',
 
-
+  onClick: function () {
+    //Open Bootstrap Modal
+  },
   render: function () {
     return React.createElement(
-      "div",
-      { className: "col-md-3" },
+      'div',
+      { className: 'col-md-3', onClick: this.onClick },
       React.createElement(
-        "div",
-        { className: "grid_container" },
-        React.createElement("img", { alt: "example", src: this.props.imageRoute, className: "grid_item" }),
-        React.createElement(
-          "div",
-          { className: "buttons_container" },
-          React.createElement("img", { className: "comment_icon", src: "imgs/comment.png" })
-        )
+        'div',
+        { className: 'grid_container' },
+        React.createElement('img', { alt: 'example', src: this.props.imageRoute, className: 'grid_item' })
       )
     );
   }
@@ -19084,7 +19081,7 @@ var GridItem = React.createClass({
 
 module.exports = GridItem;
 
-},{"react":158}],161:[function(require,module,exports){
+},{"./Modal.jsx":164,"react":158}],161:[function(require,module,exports){
 var React = require('react');
 var ListItem = require('./ListItem.jsx');
 
@@ -19200,6 +19197,62 @@ module.exports = ListManager;
 
 },{"./List.jsx":161,"react":158,"react-dom":2}],164:[function(require,module,exports){
 var React = require('react');
+
+var Modal = React.createClass({
+  displayName: "Modal",
+
+  render: function () {
+    return React.createElement(
+      "div",
+      { id: "myModal", className: "modal fade", role: "dialog" },
+      React.createElement(
+        "div",
+        { className: "modal-dialog" },
+        React.createElement(
+          "div",
+          { className: "modal-content" },
+          React.createElement(
+            "div",
+            { className: "modal-header" },
+            React.createElement(
+              "button",
+              { type: "button", className: "close", "data-dismiss": "modal" },
+              "×"
+            ),
+            React.createElement(
+              "h4",
+              { className: "modal-title" },
+              this.props.title
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "modal-body" },
+            React.createElement(
+              "p",
+              null,
+              this.props.paragraph
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "modal-footer" },
+            React.createElement(
+              "button",
+              { type: "button", className: "btn btn-default", "data-dismiss": "modal" },
+              "Close"
+            )
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = Modal;
+
+},{"react":158}],165:[function(require,module,exports){
+var React = require('react');
 var ReactDOM = require('react-dom');
 
 var Box = React.createClass({
@@ -19221,7 +19274,7 @@ var Box = React.createClass({
 
 module.exports = Box;
 
-},{"react":158,"react-dom":2}],165:[function(require,module,exports){
+},{"react":158,"react-dom":2}],166:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Toolbar = require('./components/Toolbar.jsx');
@@ -19232,4 +19285,4 @@ ReactDOM.render(React.createElement(Toolbar, null), document.getElementById('too
 ReactDOM.render(React.createElement(GridCollage, null), document.getElementById('body'));
 //  ReactDOM.render(<ListManager />, document.getElementById('body'));
 
-},{"./components/GridCollage.jsx":159,"./components/ListManager.jsx":163,"./components/Toolbar.jsx":164,"react":158,"react-dom":2}]},{},[165]);
+},{"./components/GridCollage.jsx":159,"./components/ListManager.jsx":163,"./components/Toolbar.jsx":165,"react":158,"react-dom":2}]},{},[166]);
