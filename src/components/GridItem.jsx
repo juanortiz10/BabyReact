@@ -1,10 +1,7 @@
 var React = require('react');
-var Modal= require('./Modal.jsx');
+var Modal = require('react-modal');
 
 var GridItem = React.createClass({
-  onClick: function(){
-    //Open Bootstrap Modal
-  },
   render: function(){
     return(
       <div className="col-md-3" onClick={this.onClick}>

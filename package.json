@@ -20,6 +20,7 @@
     "watchify": "~3.7.0",
     "babel-preset-react": "~6.5.0",
     "react": "~0.14.7",
-    "react-dom": "~0.14.7"
+    "react-dom": "~0.14.7",
+    "react-modal": "~0.6.1"
   }
 }

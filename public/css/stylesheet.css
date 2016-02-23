@@ -45,6 +45,7 @@ img#avatar{
   height: 40px;
   display: block;
   margin: 5px auto;
+  cursor: pointer;
 }
 
 img.grid_item{
