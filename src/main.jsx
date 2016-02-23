@@ -1,7 +1,9 @@
 var React= require('react');
 var ReactDOM = require('react-dom');
-var Box = require('./components/Box.jsx');
+var Toolbar = require('./components/Toolbar.jsx');
 var ListManager = require('./components/ListManager.jsx');
+var GridCollage = require('./components/GridCollage.jsx');
 
-ReactDOM.render(<Box/>, document.getElementById('toolbar'));
+ReactDOM.render(<Toolbar/>, document.getElementById('toolbar'));
+ReactDOM.render(<GridCollage/>, document.getElementById('body'));
 //  ReactDOM.render(<ListManager />, document.getElementById('body'));

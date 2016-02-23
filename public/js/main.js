@@ -19032,28 +19032,59 @@ module.exports = require('./lib/React');
 
 },{"./lib/React":26}],159:[function(require,module,exports){
 var React = require('react');
-var ReactDOM = require('react-dom');
+var GridItem = require('./GridItem.jsx');
 
-var Box = React.createClass({
-  displayName: 'Box',
+var GridCollage = React.createClass({
+  displayName: 'GridCollage',
 
+  getInitialState: function () {
+    return {
+      items: ['./imgs/example01.jpg', './imgs/example02.jpg', './imgs/example03.jpg', './imgs/example04.jpg', './imgs/example05.jpg', './imgs/example06.jpg', './imgs/example07.jpg', './imgs/example08.jpg']
+    };
+  },
   render: function () {
+    var createImageBox = function (src, index) {
+      console.log(index);
+      return React.createElement(GridItem, { imageRoute: src, key: index });
+    };
     return React.createElement(
       'div',
       { className: 'row' },
-      React.createElement('div', { className: 'col-md-9 col-sm-9 col-xs-9 col-lg-9' }),
+      this.state.items.map(createImageBox)
+    );
+  }
+});
+
+module.exports = GridCollage;
+
+},{"./GridItem.jsx":160,"react":158}],160:[function(require,module,exports){
+var React = require('react');
+
+var GridItem = React.createClass({
+  displayName: "GridItem",
+
+
+  render: function () {
+    return React.createElement(
+      "div",
+      { className: "col-md-3" },
       React.createElement(
-        'div',
-        { className: 'col-md-3 col-sm-3 col-xs-3 col-lg-3' },
-        React.createElement('img', { src: 'imgs/user.png', alt: 'user_avatar', id: 'avatar' })
+        "div",
+        { className: "grid_container" },
+        React.createElement("img", { alt: "example", src: this.props.imageRoute, className: "grid_item" }),
+        React.createElement(
+          "div",
+          { className: "buttons_container" },
+          React.createElement("img", { className: "comment_icon", src: "imgs/comment.png" })
+        )
       )
     );
   }
 });
 
-module.exports = Box;
+module.exports = GridItem;
 
-},{"react":158,"react-dom":2}],160:[function(require,module,exports){
+},{"react":158}],161:[function(require,module,exports){
 var React = require('react');
 var ListItem = require('./ListItem.jsx');
 
@@ -19074,7 +19105,7 @@ var List = React.createClass({
 
 module.exports = List;
 
-},{"./ListItem.jsx":161,"react":158}],161:[function(require,module,exports){
+},{"./ListItem.jsx":162,"react":158}],162:[function(require,module,exports){
 var React = require('react');
 
 var ListItem = React.createClass({
@@ -19095,7 +19126,7 @@ var ListItem = React.createClass({
 
 module.exports = ListItem;
 
-},{"react":158}],162:[function(require,module,exports){
+},{"react":158}],163:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var List = require('./List.jsx');
@@ -19167,13 +19198,38 @@ var ListManager = React.createClass({
 
 module.exports = ListManager;
 
-},{"./List.jsx":160,"react":158,"react-dom":2}],163:[function(require,module,exports){
+},{"./List.jsx":161,"react":158,"react-dom":2}],164:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Box = require('./components/Box.jsx');
-var ListManager = require('./components/ListManager.jsx');
 
-ReactDOM.render(React.createElement(Box, null), document.getElementById('toolbar'));
+var Box = React.createClass({
+  displayName: 'Box',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      { className: 'row' },
+      React.createElement('div', { className: 'col-md-9 col-sm-9 col-xs-9 col-lg-9' }),
+      React.createElement(
+        'div',
+        { className: 'col-md-3 col-sm-3 col-xs-3 col-lg-3' },
+        React.createElement('img', { src: 'imgs/user.png', alt: 'user_avatar', id: 'avatar' })
+      )
+    );
+  }
+});
+
+module.exports = Box;
+
+},{"react":158,"react-dom":2}],165:[function(require,module,exports){
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Toolbar = require('./components/Toolbar.jsx');
+var ListManager = require('./components/ListManager.jsx');
+var GridCollage = require('./components/GridCollage.jsx');
+
+ReactDOM.render(React.createElement(Toolbar, null), document.getElementById('toolbar'));
+ReactDOM.render(React.createElement(GridCollage, null), document.getElementById('body'));
 //  ReactDOM.render(<ListManager />, document.getElementById('body'));
 
-},{"./components/Box.jsx":159,"./components/ListManager.jsx":162,"react":158,"react-dom":2}]},{},[163]);
+},{"./components/GridCollage.jsx":159,"./components/ListManager.jsx":163,"./components/Toolbar.jsx":164,"react":158,"react-dom":2}]},{},[165]);

@@ -1091,6 +1091,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   background-image: url('../imgs/sanfco.jpg');
+  background-repeat: no-repeat;
   color: #333;
   background-color:  #FFF;
 
