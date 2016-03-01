@@ -32,12 +32,12 @@ div.grid_container{
   border-radius: 30px;
   padding: 20px;
   margin-top: 10%;
-  transition: background-color 0.5s ease;
-
+  transition: background-color 0.5s ease,width 0.3s ease;
 }
 
 div.grid_container:hover{
   background-color: white;
+  width: 320px;
 }
 
 img#avatar{
