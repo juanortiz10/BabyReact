@@ -25749,22 +25749,41 @@ module.exports = Routes;
 },{"./components/Base.jsx":237,"./components/GridCollage.jsx":238,"./components/Image01.jsx":240,"./components/Image02.jsx":241,"./components/Image03.jsx":242,"./components/Image04.jsx":243,"./components/Image05.jsx":244,"./components/Image06.jsx":245,"./components/Image07.jsx":246,"./components/Image08.jsx":247,"react":235,"react-router":50}],237:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 
 var Base = React.createClass({
   displayName: 'Base',
 
   render: function () {
+    var styleButton = {
+      display: 'block',
+      margin: '0 auto'
+    };
     return React.createElement(
       'div',
       { className: 'container' },
-      this.props.children
+      React.createElement(
+        'div',
+        { className: 'row' },
+        this.props.children,
+        React.createElement(
+          Link,
+          { to: 'collage' },
+          React.createElement(
+            'button',
+            { className: 'btn btn-default', style: styleButton },
+            'Galeria'
+          )
+        )
+      )
     );
   }
 });
 
 module.exports = Base;
 
-},{"react":235,"react-dom":2}],238:[function(require,module,exports){
+},{"react":235,"react-dom":2,"react-router":50}],238:[function(require,module,exports){
 var React = require('react');
 var GridItem = require('./GridItem.jsx');
 
@@ -25794,6 +25813,8 @@ module.exports = GridCollage;
 },{"./GridItem.jsx":239,"react":235}],239:[function(require,module,exports){
 var React = require('react');
 var Modal = require('react-modal');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 
 var GridItem = React.createClass({
   displayName: 'GridItem',
@@ -25805,7 +25826,12 @@ var GridItem = React.createClass({
       React.createElement(
         'div',
         { className: 'grid_container' },
-        React.createElement('img', { alt: 'example', src: this.props.imageRoute, className: 'grid_item' })
+        React.createElement('img', { alt: 'example', src: this.props.imageRoute, className: 'grid_item' }),
+        React.createElement(
+          Link,
+          { to: '/image01' },
+          'click'
+        )
       )
     );
   }
@@ -25813,7 +25839,7 @@ var GridItem = React.createClass({
 
 module.exports = GridItem;
 
-},{"react":235,"react-modal":9}],240:[function(require,module,exports){
+},{"react":235,"react-modal":9,"react-router":50}],240:[function(require,module,exports){
 
 },{}],241:[function(require,module,exports){
 
