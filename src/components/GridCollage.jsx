@@ -6,8 +6,7 @@ var GridCollage = React.createClass({
     return {
       items:['./imgs/example01.jpg','./imgs/example02.jpg','./imgs/example03.jpg',
             './imgs/example04.jpg','./imgs/example05.jpg','./imgs/example06.jpg',
-            './imgs/example07.jpg','./imgs/example08.jpg'],
-      modalIsOpen: false
+            './imgs/example07.jpg','./imgs/example08.jpg']
     };
   },
   render: function(){

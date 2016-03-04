@@ -25792,8 +25792,7 @@ var GridCollage = React.createClass({
 
   getInitialState: function () {
     return {
-      items: ['./imgs/example01.jpg', './imgs/example02.jpg', './imgs/example03.jpg', './imgs/example04.jpg', './imgs/example05.jpg', './imgs/example06.jpg', './imgs/example07.jpg', './imgs/example08.jpg'],
-      modalIsOpen: false
+      items: ['./imgs/example01.jpg', './imgs/example02.jpg', './imgs/example03.jpg', './imgs/example04.jpg', './imgs/example05.jpg', './imgs/example06.jpg', './imgs/example07.jpg', './imgs/example08.jpg']
     };
   },
   render: function () {
@@ -25819,18 +25818,48 @@ var Link = ReactRouter.Link;
 var GridItem = React.createClass({
   displayName: 'GridItem',
 
+  getInitialState: function () {
+    return {
+      imageref: ''
+    };
+  },
+  componentWillMount: function () {
+    this.setState({ imageref: this.getRoute() });
+  },
+  getRoute: function () {
+    var route = '';
+    var param = this.props.imageRoute;
+    if (param.includes('01')) {
+      route = 'image01';
+    } else if (param.includes('02')) {
+      route = 'image02';
+    } else if (param.includes('03')) {
+      route = 'image03';
+    } else if (param.includes('04')) {
+      route = 'image04';
+    } else if (param.includes('05')) {
+      route = 'image05';
+    } else if (param.includes('06')) {
+      route = 'image06';
+    } else if (param.includes('07')) {
+      route = 'image07';
+    } else if (param.includes('08')) {
+      route = 'image08';
+    }
+    return route;
+  },
   render: function () {
     return React.createElement(
       'div',
-      { className: 'col-md-3', onClick: this.onClick },
+      { className: 'col-md-3' },
       React.createElement(
         'div',
         { className: 'grid_container' },
         React.createElement('img', { alt: 'example', src: this.props.imageRoute, className: 'grid_item' }),
         React.createElement(
           Link,
-          { to: '/image01' },
-          'click'
+          { to: this.state.imageref },
+          'Comentar'
         )
       )
     );
@@ -25840,8 +25869,17 @@ var GridItem = React.createClass({
 module.exports = GridItem;
 
 },{"react":235,"react-modal":9,"react-router":50}],240:[function(require,module,exports){
+var React = require('react');
 
-},{}],241:[function(require,module,exports){
+var Image01 = React.createClass({
+  displayName: "Image01",
+
+  render: function () {
+    return React.createElement("div", { className: "row" });
+  }
+});
+
+},{"react":235}],241:[function(require,module,exports){
 
 },{}],242:[function(require,module,exports){
 
@@ -25858,15 +25896,8 @@ module.exports = GridItem;
 },{}],248:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
-/*var Toolbar = require('./components/Toolbar.jsx');
-var ListManager = require('./components/ListManager.jsx');
-var GridCollage = require('./components/GridCollage.jsx');
-*/
-
 var Routes = require('./Routes.jsx');
+
 ReactDOM.render(Routes, document.getElementById('main'));
-//ReactDOM.render(<Toolbar/>, document.getElementById('toolbar'));
-//ReactDOM.render(<GridCollage/>, document.getElementById('body'));
-//  ReactDOM.render(<ListManager />, document.getElementById('body'));
 
 },{"./Routes.jsx":236,"react":235,"react-dom":2}]},{},[248]);
