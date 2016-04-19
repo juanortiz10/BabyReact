@@ -18,19 +18,19 @@ var GridItem = React.createClass({
     if(param.includes('01')){
         route = 'image01';
     }else if(param.includes('02')){
-        route = 'image02';
+        route = 'image01';
     }else if(param.includes('03')){
-        route = 'image03';
+        route = 'Image01';
     }else if(param.includes('04')){
-        route = 'image04';
+        route = 'Image01';
     }else if(param.includes('05')){
-        route = 'image05';
+        route = 'Image01';
     }else if(param.includes('06')){
-        route = 'image06';
+        route = 'Image01';
     }else if(param.includes('07')){
-        route = 'image07';
+        route = 'image01';
     }else if(param.includes('08')){
-        route = 'image08';
+        route = 'image01';
     }
     return route;
   },
