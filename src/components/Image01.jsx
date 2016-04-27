@@ -1,4 +1,5 @@
 var React = require('react');
+var Box = require('./Box.jsx');
 var BadWords= ['pinche','ojete','puto','mierda','chingada','verga','verguita',
                'joto', 'muerte','muere','pendejo','giño','culo','puñetas',
               'chinga tu madre','puta'];
@@ -7,7 +8,8 @@ var Image01 = React.createClass({
   getInitialState: function(){
     return{
       comments: '',
-      isError: ''
+      isError: '',
+      thereIsComment: document.cookie.replace(/(?:(?:^|.*;\s*)comments\s*\=\s*([^;]*).*$)|^.*$/, "$1"),
     };
   },
   onChange: function(e){
@@ -20,11 +22,12 @@ var Image01 = React.createClass({
       if(this.analyzeResults(results)){
         this.setState({isError: 'Ups!, parece que haz introducido malas palabras'});
       }else{
-        //TODO
-        this.setState({isError: ''});
-        var d = new Date();
-        var n = d.getTime();
-
+        document.cookie = "comments="+this.state.comments;
+        this.setState({
+          isError: '',
+          comments: '',
+          thereIsComment: document.cookie.replace(/(?:(?:^|.*;\s*)comments\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+        });
       }
     }else{
       alert("Introduce un comentario válido!");
@@ -34,7 +37,7 @@ var Image01 = React.createClass({
     this.setState({comments: ''});
   },
   checkIfWordIsBad: function(wholeWord){
-      if(this.state.comments.includes(wholeWord))
+      if(this.state.comments.toLowerCase().includes(wholeWord))
         return true;
 
       return false;
@@ -81,6 +84,7 @@ var Image01 = React.createClass({
     return(
       <div className="row" style={style}>
         <h2 style={title}>Comentarios</h2>
+        <Box text={this.state.thereIsComment}/>
         <input onChange={this.onChange} style={inp} type="text" maxLength="200" value={this.state.comments}/>
         <div style={containerButtons}>
           <button onClick={this.onOk} style={button} className="btn btn-info">Aceptar</button>

@@ -26106,7 +26106,7 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/Base.jsx":239,"./components/GridCollage.jsx":240,"./components/Image01.jsx":242,"react":236,"react-router":51}],239:[function(require,module,exports){
+},{"./components/Base.jsx":239,"./components/GridCollage.jsx":241,"./components/Image01.jsx":243,"react":236,"react-router":51}],239:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var ReactRouter = require('react-router');
@@ -26145,6 +26145,43 @@ module.exports = Base;
 
 },{"react":236,"react-dom":1,"react-router":51}],240:[function(require,module,exports){
 var React = require('react');
+
+var Box = React.createClass({
+  displayName: 'Box',
+
+  render: function () {
+    var divStyle = {
+      width: '100%',
+      height: '20px',
+      textAlign: 'center',
+      border: '1px solid rgba(86,61,124,.2)',
+      backgroundColor: '#ddd',
+      marginBottom: '20px'
+    };
+    var pStyle = {
+      color: '#2D2E2E'
+    };
+    console.log(this.props.text);
+    return React.createElement(
+      'div',
+      { style: divStyle },
+      React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'p',
+          { style: pStyle },
+          this.props.text
+        )
+      )
+    );
+  }
+});
+
+module.exports = Box;
+
+},{"react":236}],241:[function(require,module,exports){
+var React = require('react');
 var GridItem = require('./GridItem.jsx');
 
 var GridCollage = React.createClass({
@@ -26169,7 +26206,7 @@ var GridCollage = React.createClass({
 
 module.exports = GridCollage;
 
-},{"./GridItem.jsx":241,"react":236}],241:[function(require,module,exports){
+},{"./GridItem.jsx":242,"react":236}],242:[function(require,module,exports){
 var React = require('react');
 var Modal = require('react-modal');
 var ReactRouter = require('react-router');
@@ -26228,8 +26265,9 @@ var GridItem = React.createClass({
 
 module.exports = GridItem;
 
-},{"react":236,"react-modal":8,"react-router":51}],242:[function(require,module,exports){
+},{"react":236,"react-modal":8,"react-router":51}],243:[function(require,module,exports){
 var React = require('react');
+var Box = require('./Box.jsx');
 var BadWords = ['pinche', 'ojete', 'puto', 'mierda', 'chingada', 'verga', 'verguita', 'joto', 'muerte', 'muere', 'pendejo', 'giño', 'culo', 'puñetas', 'chinga tu madre', 'puta'];
 
 var Image01 = React.createClass({
@@ -26238,7 +26276,8 @@ var Image01 = React.createClass({
   getInitialState: function () {
     return {
       comments: '',
-      isError: ''
+      isError: '',
+      thereIsComment: document.cookie.replace(/(?:(?:^|.*;\s*)comments\s*\=\s*([^;]*).*$)|^.*$/, "$1")
     };
   },
   onChange: function (e) {
@@ -26251,10 +26290,12 @@ var Image01 = React.createClass({
       if (this.analyzeResults(results)) {
         this.setState({ isError: 'Ups!, parece que haz introducido malas palabras' });
       } else {
-        //TODO
-        this.setState({ isError: '' });
-        var d = new Date();
-        var n = d.getTime();
+        document.cookie = "comments=" + this.state.comments;
+        this.setState({
+          isError: '',
+          comments: '',
+          thereIsComment: document.cookie.replace(/(?:(?:^|.*;\s*)comments\s*\=\s*([^;]*).*$)|^.*$/, "$1")
+        });
       }
     } else {
       alert("Introduce un comentario válido!");
@@ -26264,7 +26305,7 @@ var Image01 = React.createClass({
     this.setState({ comments: '' });
   },
   checkIfWordIsBad: function (wholeWord) {
-    if (this.state.comments.includes(wholeWord)) return true;
+    if (this.state.comments.toLowerCase().includes(wholeWord)) return true;
 
     return false;
   },
@@ -26314,6 +26355,7 @@ var Image01 = React.createClass({
         { style: title },
         'Comentarios'
       ),
+      React.createElement(Box, { text: this.state.thereIsComment }),
       React.createElement('input', { onChange: this.onChange, style: inp, type: 'text', maxLength: '200', value: this.state.comments }),
       React.createElement(
         'div',
@@ -26340,11 +26382,11 @@ var Image01 = React.createClass({
 
 module.exports = Image01;
 
-},{"react":236}],243:[function(require,module,exports){
+},{"./Box.jsx":240,"react":236}],244:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('main'));
 
-},{"./Routes.jsx":238,"react":236,"react-dom":1}]},{},[243]);
+},{"./Routes.jsx":238,"react":236,"react-dom":1}]},{},[244]);
